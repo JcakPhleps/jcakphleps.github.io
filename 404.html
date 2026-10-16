@@ -7,26 +7,73 @@
 <link rel="icon" href="/dude.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root{ --ink:#1a1c24; --bubble:#fcfcf7; --accent:#1b4dff; }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{background:#ffffff;color:#17191d;font-family:'Space Grotesk',system-ui,sans-serif;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  body{background:#ffffff;color:var(--ink);
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:24px}
-  .bubble{position:relative;background:#17191d;color:#fff;font-size:15px;font-weight:500;
-    padding:11px 16px;border-radius:12px;margin-bottom:18px}
-  .bubble::after{content:"";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);
-    border:8px solid transparent;border-top-color:#17191d;border-bottom:0}
-  img.dude{width:132px;height:auto;image-rendering:pixelated}
-  .home{margin-top:30px;font-size:26px;font-weight:600;color:#17191d;text-decoration:none;
-    border-bottom:2px solid #17191d;padding-bottom:2px;transition:color .15s,border-color .15s}
-  .home:hover{color:#1b4dff;border-color:#1b4dff}
+
+  /* speech bubble — matches the in-app Dude bubble */
+  .bubble{position:relative;background:var(--bubble);border:2px solid var(--ink);
+    border-radius:4px;padding:10px 16px;
+    font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:600;font-size:15px;
+    color:var(--ink);box-shadow:0 3px 6px rgba(0,0,0,.18)}
+  .tail{display:block;margin:-2px auto 0;filter:drop-shadow(0 2px 2px rgba(0,0,0,.12))}
+
+  .dude{width:200px;height:200px;margin-top:6px;image-rendering:pixelated}
+
+  .home{margin-top:34px;font-size:20px;font-weight:500;color:var(--ink)}
+  .addr{display:inline-block;margin-top:8px;font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:16px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px}
+  .addr:hover{opacity:.75}
 </style>
 </head>
 <body>
   <div class="bubble">Wrong way</div>
-  <img class="dude" src="/dude.png" alt="dude mascot">
-  <a class="home" href="/">go home?</a>
+  <svg class="tail" width="18" height="11" viewBox="0 0 18 11" aria-hidden="true">
+    <polygon points="1,0 17,0 9,10" fill="#fcfcf7"/>
+    <polyline points="1,0 9,10 17,0" fill="none" stroke="#1a1c24" stroke-width="2"/>
+  </svg>
+
+  <svg class="dude" id="dude" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-label="dude mascot"></svg>
+
+  <div class="home">go home</div>
+  <a class="addr" href="/">jcakphleps.github.io</a>
+
+<script>
+  // idleA sprite from the Dude program (Sources/Dude/Pet/Sprites.swift), 16x16.
+  // Legend: . transparent · K ink · W body · E eye · A accent
+  const ROWS = [
+    "................",
+    ".....KKKKKK.....",
+    "....KWWWWWWK....",
+    "....KWEWWEWK....",
+    "....KWWWWWWK....",
+    ".....KKKKKK.....",
+    ".....KKKKKK.....",
+    ".....K.KK.K.....",
+    ".....K.KK.K.....",
+    ".......KK.......",
+    ".......KK.......",
+    "......K..K......",
+    ".....K....K.....",
+    ".....K....K.....",
+    "................",
+    "................",
+  ];
+  const COLOR = { K:"#1a1c24", W:"#fafaf5", E:"#1a1c24", A:"#f06b47" };
+  let rects = "";
+  ROWS.forEach((row, y) => {
+    for (let x = 0; x < row.length; x++){
+      const c = COLOR[row[x]];
+      if (c) rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${c}"/>`;
+    }
+  });
+  document.getElementById("dude").innerHTML = rects;
+</script>
 </body>
 </html>
