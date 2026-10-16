@@ -17,6 +17,9 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:24px}
 
+  .code{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:600;
+    font-size:clamp(40px,9vw,60px);letter-spacing:.06em;color:var(--ink);margin-bottom:38px}
+
   /* speech bubble — matches the in-app Dude bubble */
   .bubble{position:relative;background:var(--bubble);border:2px solid var(--ink);
     border-radius:4px;padding:10px 16px;
@@ -33,6 +36,7 @@
 </style>
 </head>
 <body>
+  <div class="code">404</div>
   <div class="bubble">Wrong way</div>
   <svg class="tail" width="18" height="11" viewBox="0 0 18 11" aria-hidden="true">
     <polygon points="1,0 17,0 9,10" fill="#fcfcf7"/>
