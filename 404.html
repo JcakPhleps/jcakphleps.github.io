@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Wrong way</title>
+<link rel="icon" href="/dude.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#ffffff;color:#17191d;font-family:'Space Grotesk',system-ui,sans-serif;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    text-align:center;padding:24px}
+  .bubble{position:relative;background:#17191d;color:#fff;font-size:15px;font-weight:500;
+    padding:11px 16px;border-radius:12px;margin-bottom:18px}
+  .bubble::after{content:"";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);
+    border:8px solid transparent;border-top-color:#17191d;border-bottom:0}
+  img.dude{width:132px;height:auto;image-rendering:pixelated}
+  .home{margin-top:30px;font-size:26px;font-weight:600;color:#17191d;text-decoration:none;
+    border-bottom:2px solid #17191d;padding-bottom:2px;transition:color .15s,border-color .15s}
+  .home:hover{color:#1b4dff;border-color:#1b4dff}
+</style>
+</head>
+<body>
+  <div class="bubble">Wrong way</div>
+  <img class="dude" src="/dude.png" alt="dude mascot">
+  <a class="home" href="/">go home?</a>
+</body>
+</html>

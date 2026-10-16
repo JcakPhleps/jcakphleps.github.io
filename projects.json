@@ -1,0 +1,118 @@
+{
+  "projects": [
+    {
+      "id": "cribs",
+      "name": "Cribs",
+      "desc": "Browser social game — build and visit low-poly, PS2-era digital homes.",
+      "stack": ["Three.js", "Firebase"],
+      "url": "https://jcakphleps.github.io/cribs/",
+      "repo": "https://github.com/JcakPhleps/cribs",
+      "screenshots": [],
+      "status": "public"
+    },
+    {
+      "id": "glassos",
+      "name": "GlassOS",
+      "desc": "A Frutiger-Aero desktop environment, reborn. Full glassy OS shell prototype.",
+      "stack": ["Qt6/QML", "Web"],
+      "url": "https://jcakphleps.github.io/GlassOS/",
+      "repo": "https://github.com/JcakPhleps/GlassOS",
+      "screenshots": [
+        "https://jcakphleps.github.io/GlassOS/final.png",
+        "https://jcakphleps.github.io/GlassOS/apps.png",
+        "https://jcakphleps.github.io/GlassOS/darklive.png"
+      ],
+      "status": "public"
+    },
+    {
+      "id": "dude",
+      "name": "dude",
+      "desc": "Screen-aware macOS desktop buddy that sees your screen and acts in context.",
+      "stack": ["SwiftUI", "Gemini"],
+      "url": null,
+      "repo": "https://github.com/JcakPhleps/dude",
+      "screenshots": [],
+      "status": "public"
+    },
+    {
+      "id": "sound-system",
+      "name": "Sound System",
+      "desc": "macOS app for the room speakers with a '90s Pioneer-receiver face.",
+      "stack": ["Swift", "CoreAudio"],
+      "url": null,
+      "repo": "https://github.com/JcakPhleps/sound-system",
+      "screenshots": [],
+      "status": "public"
+    },
+    {
+      "id": "safe-mode",
+      "name": "SAFE MODE",
+      "desc": "Co-op survival horror set inside a PC. Proximity voice, physical malware.",
+      "stack": ["Godot 4.7", "GDScript"],
+      "url": null,
+      "repo": "https://github.com/JcakPhleps/safe-mode",
+      "screenshots": [],
+      "status": "public"
+    },
+    {
+      "id": "anti-sleepin",
+      "name": "Anti SleepIn",
+      "desc": "Roku alarm channel with a dismissal you can't sleep through.",
+      "stack": ["BrightScript"],
+      "url": null,
+      "repo": "https://github.com/JcakPhleps/anti-sleepin",
+      "screenshots": [],
+      "status": "public"
+    },
+    {
+      "id": "aero-messenger",
+      "name": "Aero Messenger",
+      "desc": "An MSN Messenger remake in Frutiger Aero — presence, nudges, calls.",
+      "stack": ["Vanilla JS", "Firebase"],
+      "url": null,
+      "repo": "https://github.com/JcakPhleps/dud-messenger",
+      "screenshots": [],
+      "status": "invisible"
+    },
+    {
+      "id": "ping",
+      "name": "Ping",
+      "desc": "Glassy, no-download web chat — DMs, groups, friends, WebRTC calls.",
+      "stack": ["Vanilla JS", "Firebase"],
+      "url": null,
+      "repo": null,
+      "screenshots": [],
+      "status": "invisible"
+    },
+    {
+      "id": "scholar",
+      "name": "Scholar",
+      "desc": "The ultimate student app — Aspen sync, Claude tutor, planner, notes.",
+      "stack": ["Fastify", "SQLite", "Vite PWA"],
+      "url": null,
+      "repo": null,
+      "screenshots": [],
+      "status": "invisible"
+    },
+    {
+      "id": "phelps-linux",
+      "name": "Phelps Linux",
+      "desc": "A minimal custom arm64 Linux distro, compiled from source.",
+      "stack": ["C", "QEMU"],
+      "url": null,
+      "repo": null,
+      "screenshots": [],
+      "status": "invisible"
+    },
+    {
+      "id": "3d-printer",
+      "name": "3D Print Pipeline",
+      "desc": "Headless print pipeline for the Monoprice Voxel / Flashforge AD3.",
+      "stack": ["Python", "OrcaSlicer"],
+      "url": null,
+      "repo": null,
+      "screenshots": [],
+      "status": "invisible"
+    }
+  ]
+}
