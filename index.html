@@ -3,197 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jack's Projects</title>
+<title>Jack Phelps — Projects</title>
+<meta name="description" content="An index of things Jack is building.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg1:#aee3ff; --bg2:#5bb8f0; --bg3:#2a7fd4;
-    --glass:rgba(255,255,255,.55);
-    --glass-brd:rgba(255,255,255,.75);
-    --ink:#0e2538; --ink-soft:#3a5366;
-    --shadow:0 10px 30px rgba(16,60,100,.25);
+    --paper:#f3f1ea; --panel:#faf9f5; --ink:#17191d; --ink-2:#5c5f66;
+    --rule:rgba(23,25,29,.11); --rule-strong:rgba(23,25,29,.2);
+    --accent:#1b4dff; --live:#1f9e54; --soon:#b07a1f; --hover:rgba(23,25,29,.035);
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --disp:'Space Grotesk',system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#111317; --panel:#15181d; --ink:#e9e8e3; --ink-2:#9a9da4;
+      --rule:rgba(233,232,227,.12); --rule-strong:rgba(233,232,227,.24);
+      --accent:#6e8bff; --live:#3fcf7a; --soon:#d6a94a; --hover:rgba(233,232,227,.045);
+    }
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
   body{
-    font-family:Inter,system-ui,-apple-system,sans-serif;
-    color:var(--ink);
-    min-height:100%;
-    background:
-      radial-gradient(1200px 600px at 15% -10%, #e9f8ff 0%, transparent 55%),
-      radial-gradient(900px 700px at 110% 10%, #bfefff 0%, transparent 60%),
-      linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 45%,var(--bg3) 100%);
-    background-attachment:fixed;
-    overflow-x:hidden;
+    font-family:var(--disp);background:var(--paper);color:var(--ink);
+    min-height:100vh;line-height:1.5;
+    background-image:linear-gradient(var(--rule) 1px,transparent 1px);
+    background-size:100% 2px;background-position:0 -1px;background-attachment:fixed;
   }
-  /* floating aero bubbles */
-  .bubbles{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
-  .bubbles span{position:absolute;bottom:-120px;border-radius:50%;
-    background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.9),rgba(255,255,255,.08) 60%,transparent 70%);
-    box-shadow:inset 0 0 20px rgba(255,255,255,.4);
-    animation:rise linear infinite;opacity:.6}
-  @keyframes rise{to{transform:translateY(-120vh) translateX(40px);opacity:0}}
+  .wrap{max-width:860px;margin:0 auto;padding:clamp(40px,8vw,96px) clamp(20px,5vw,36px) 80px}
 
-  header{position:relative;z-index:1;text-align:center;padding:70px 20px 30px}
-  header h1{
-    font-size:clamp(38px,7vw,74px);font-weight:800;letter-spacing:-1.5px;
-    color:#fff;text-shadow:0 2px 0 rgba(255,255,255,.4),0 6px 24px rgba(10,50,90,.45);
+  /* masthead */
+  .mast{display:flex;justify-content:space-between;align-items:flex-end;
+    gap:24px;padding-bottom:22px;border-bottom:1.5px solid var(--rule-strong);flex-wrap:wrap}
+  .mast h1{font-size:clamp(28px,5vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1.05}
+  .mast .sub{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);margin-top:8px;letter-spacing:.01em}
+  .mast .meta{font-family:var(--mono);font-size:12px;color:var(--ink-2);text-align:right;line-height:1.8}
+  .mast .meta b{color:var(--ink);font-weight:500}
+
+  /* column header */
+  .cols{display:grid;grid-template-columns:34px 1fr 150px 86px;gap:16px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-2);padding:18px 10px 10px;border-bottom:1px solid var(--rule)}
+  .cols span:nth-child(3),.cols span:nth-child(4){text-align:right}
+
+  /* rows */
+  .row{display:grid;grid-template-columns:34px 1fr 150px 86px;gap:16px;align-items:center;
+    padding:18px 10px;border-bottom:1px solid var(--rule);
+    text-decoration:none;color:inherit;position:relative;
+    transition:background .15s ease}
+  a.row{cursor:pointer}
+  a.row:hover{background:var(--hover)}
+  a.row:hover .name{color:var(--accent)}
+  a.row:hover .go{opacity:1;transform:translateX(0)}
+  .row.disabled{cursor:default;opacity:.6}
+
+  .idx{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+  .main .name{font-size:18px;font-weight:600;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:9px;transition:color .15s}
+  .main .go{font-family:var(--mono);font-size:13px;color:var(--accent);opacity:0;transform:translateX(-4px);transition:.18s}
+  .main .desc{color:var(--ink-2);font-size:14px;margin-top:4px;max-width:46ch}
+
+  .stack{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);text-align:right;line-height:1.55}
+
+  .status{justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+    display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  .status .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .status.live .dot{background:var(--live);box-shadow:0 0 0 3px color-mix(in srgb,var(--live) 22%,transparent)}
+  .status.live{color:var(--live)}
+  .status.src .dot{background:var(--ink-2)}
+  .status.src{color:var(--ink-2)}
+  .status.soon .dot{background:var(--soon)}
+  .status.soon{color:var(--soon)}
+
+  footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    margin-top:36px;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule-strong);padding-bottom:1px}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+
+  @media (max-width:620px){
+    .cols{display:none}
+    .row{grid-template-columns:28px 1fr auto;gap:12px;align-items:start}
+    .stack{display:none}
+    .status{grid-column:3;align-self:center}
+    .main .desc{max-width:none}
   }
-  header p{margin-top:12px;color:#eaf7ff;font-weight:500;font-size:clamp(14px,2vw,18px);
-    text-shadow:0 1px 8px rgba(10,50,90,.4)}
 
-  .grid{position:relative;z-index:1;max-width:1100px;margin:30px auto 80px;
-    padding:0 22px;display:grid;gap:22px;
-    grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
-
-  .card{
-    position:relative;border-radius:22px;padding:24px;cursor:pointer;
-    background:var(--glass);backdrop-filter:blur(14px) saturate(160%);
-    -webkit-backdrop-filter:blur(14px) saturate(160%);
-    border:1px solid var(--glass-brd);box-shadow:var(--shadow);
-    transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s;
-    overflow:hidden;min-height:168px;display:flex;flex-direction:column}
-  .card::before{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;
-    background:linear-gradient(180deg,rgba(255,255,255,.65),transparent 42%)}
-  .card:hover{transform:translateY(-6px) scale(1.012);box-shadow:0 18px 44px rgba(16,60,100,.32)}
-  .card .accent{position:absolute;top:0;left:0;right:0;height:5px}
-  .card h2{font-size:22px;font-weight:700;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
-  .card .emoji{font-size:26px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.2))}
-  .card p{margin-top:10px;color:var(--ink-soft);font-size:14.5px;line-height:1.5;font-weight:500;flex:1}
-  .badge{display:inline-flex;align-items:center;gap:6px;margin-top:16px;align-self:flex-start;
-    font-size:12px;font-weight:700;letter-spacing:.3px;padding:6px 12px;border-radius:999px;
-    background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.8);color:var(--ink)}
-  .badge.live{background:linear-gradient(90deg,#3ddc84,#1fb866);color:#063d20;border-color:rgba(255,255,255,.6)}
-  .badge.gh{background:#1f2328;color:#fff;border-color:rgba(255,255,255,.2)}
-  .badge.soon{background:rgba(255,255,255,.45);color:var(--ink-soft)}
-  .card.soon{cursor:default;opacity:.82}
-  .card.soon:hover{transform:none;box-shadow:var(--shadow)}
-
-  /* preview modal (neal.fun style) */
-  .overlay{position:fixed;inset:0;z-index:50;display:none;
-    background:rgba(8,32,56,.55);backdrop-filter:blur(6px);
-    align-items:center;justify-content:center;padding:24px}
+  /* preview modal */
+  .overlay{position:fixed;inset:0;z-index:50;display:none;background:rgba(10,11,13,.5);
+    backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:clamp(12px,3vw,32px)}
   .overlay.open{display:flex}
-  .modal{width:min(1200px,96vw);height:min(820px,92vh);border-radius:20px;overflow:hidden;
-    background:#fff;box-shadow:0 30px 80px rgba(0,20,40,.5);display:flex;flex-direction:column;
-    animation:pop .25s cubic-bezier(.2,.9,.2,1)}
-  @keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
-  .modal .bar{display:flex;align-items:center;gap:12px;padding:12px 16px;
-    background:linear-gradient(180deg,#f3fbff,#dcf0ff);border-bottom:1px solid rgba(0,60,110,.1)}
-  .modal .bar .dot{width:12px;height:12px;border-radius:50%}
-  .modal .bar .title{font-weight:700;margin-left:4px}
-  .modal .bar .spacer{flex:1}
-  .modal .bar a,.modal .bar button{font:inherit;font-size:13px;font-weight:600;cursor:pointer;
-    border:1px solid rgba(0,60,110,.18);background:#fff;color:var(--ink);
-    padding:8px 14px;border-radius:10px;text-decoration:none;transition:background .15s}
-  .modal .bar a:hover,.modal .bar button:hover{background:#eaf6ff}
-  .modal .bar .close{background:#ff5f57;color:#5a0b06;border-color:transparent;font-weight:800}
-  .modal iframe{flex:1;width:100%;border:0;background:#0a1824}
-
-  footer{position:relative;z-index:1;text-align:center;color:#eaf7ff;font-weight:500;
-    padding:10px 20px 50px;text-shadow:0 1px 6px rgba(10,50,90,.35);font-size:13px}
+  .modal{width:min(1180px,100%);height:min(800px,92vh);background:var(--panel);
+    border:1px solid var(--rule-strong);border-radius:10px;overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+  .bar{display:flex;align-items:center;gap:14px;padding:11px 15px;
+    border-bottom:1px solid var(--rule);background:var(--paper);font-family:var(--mono);font-size:12.5px}
+  .bar .loc{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar .loc b{color:var(--ink);font-weight:500}
+  .bar .spacer{flex:1}
+  .bar a,.bar button{font:inherit;cursor:pointer;background:none;border:0;color:var(--ink-2);
+    text-decoration:none;padding:4px 2px;transition:color .15s}
+  .bar a:hover{color:var(--accent)}
+  .bar .close:hover{color:var(--ink)}
+  .bar .close{font-weight:500}
+  .modal iframe{flex:1;width:100%;border:0;background:var(--paper)}
 </style>
 </head>
 <body>
-<div class="bubbles" id="bubbles"></div>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1>Jack Phelps</h1>
+      <div class="sub">An index of things I'm building.</div>
+    </div>
+    <div class="meta" id="mastMeta"></div>
+  </header>
 
-<header>
-  <h1>Jack's Projects</h1>
-  <p>Everything I'm building — click a tile to preview it live or jump to the code.</p>
-</header>
+  <div class="cols"><span>#</span><span>Project</span><span>Stack</span><span>Status</span></div>
+  <main id="list"></main>
 
-<main class="grid" id="grid"></main>
-
-<footer>Built by Jack · hosted on GitHub Pages</footer>
+  <footer>
+    <span id="footStats"></span>
+    <a href="https://github.com/magwann" target="_blank" rel="noopener">github.com/magwann ↗</a>
+  </footer>
+</div>
 
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="bar">
-      <span class="dot" style="background:#ff5f57"></span>
-      <span class="dot" style="background:#febc2e"></span>
-      <span class="dot" style="background:#28c840"></span>
-      <span class="title" id="modalTitle">Preview</span>
+      <span class="loc"><b id="mTitle">preview</b> <span id="mUrl"></span></span>
       <span class="spacer"></span>
-      <a id="modalOpen" href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
-      <a id="modalRepo" href="#" target="_blank" rel="noopener">Code ↗</a>
-      <button class="close" onclick="closeModal()">Close ✕</button>
+      <a id="mOpen" target="_blank" rel="noopener">open ↗</a>
+      <a id="mRepo" target="_blank" rel="noopener">source ↗</a>
+      <button class="close" onclick="closeModal()">close ✕</button>
     </div>
-    <iframe id="modalFrame" title="Project preview" allow="fullscreen; autoplay; microphone; camera"></iframe>
+    <iframe id="mFrame" title="Project preview" allow="fullscreen; autoplay; microphone; camera"></iframe>
   </div>
 </div>
 
 <script>
 const PROJECTS = [
-  { name:"Cribs", emoji:"🏠", accent:"linear-gradient(90deg,#ff9a3c,#ff5e62)",
-    desc:"A browser social game — build and visit low-poly, PS2-style digital homes. Three.js + Firebase.",
-    kind:"live", url:"https://magwann.github.io/cribs/", repo:"https://github.com/magwann/cribs" },
-  { name:"GlassOS", emoji:"🫧", accent:"linear-gradient(90deg,#43cdf4,#2a7fd4)",
-    desc:"The cleanest desktop — Frutiger Aero, reborn. Web prototype of a full glassy OS shell.",
-    kind:"live", url:"https://magwann.github.io/GlassOS/", repo:"https://github.com/magwann/GlassOS" },
-  { name:"dude", emoji:"🐦", accent:"linear-gradient(90deg,#8e7bff,#5b9cff)",
-    desc:"A screen-aware macOS desktop buddy: a pixel mascot that sees your screen, answers in context, and walks to your Dock apps.",
-    kind:"github", repo:"https://github.com/magwann/dude" },
-  { name:"Sound System", emoji:"🔊", accent:"linear-gradient(90deg,#f6b24b,#e8863a)",
-    desc:"A macOS app for the room speakers with a 90s Pioneer-receiver look. System-wide EQ in the works.",
-    kind:"soon" },
-  { name:"SAFE MODE", emoji:"🕹️", accent:"linear-gradient(90deg,#ff4d6d,#8a1f3c)",
-    desc:"Co-op survival horror set inside a PC. Godot 4.7, proximity voice, physical malware.",
-    kind:"soon" },
-  { name:"Anti SleepIn", emoji:"⏰", accent:"linear-gradient(90deg,#4dd0e1,#2a7fd4)",
-    desc:"A Roku alarm channel: custom sound, pulsing screen, button-pattern dismissal so you can't sleep through it.",
-    kind:"soon" },
+  { name:"Cribs", desc:"Browser social game — build and visit low-poly, PS2-era digital homes.",
+    stack:["Three.js","Firebase"], status:"live",
+    url:"https://magwann.github.io/cribs/", repo:"https://github.com/magwann/cribs" },
+  { name:"GlassOS", desc:"A Frutiger-Aero desktop environment, reborn. Full glassy OS shell prototype.",
+    stack:["Qt6/QML","Web"], status:"live",
+    url:"https://magwann.github.io/GlassOS/", repo:"https://github.com/magwann/GlassOS" },
+  { name:"dude", desc:"Screen-aware macOS desktop buddy that sees your screen and acts in context.",
+    stack:["SwiftUI","Gemini"], status:"src", repo:"https://github.com/magwann/dude" },
+  { name:"Sound System", desc:"macOS app for the room speakers with a '90s Pioneer-receiver face.",
+    stack:["Swift","CoreAudio"], status:"soon" },
+  { name:"SAFE MODE", desc:"Co-op survival horror set inside a PC. Proximity voice, physical malware.",
+    stack:["Godot 4.7","GDScript"], status:"soon" },
+  { name:"Anti SleepIn", desc:"Roku alarm channel with a dismissal you can't sleep through.",
+    stack:["BrightScript"], status:"soon" },
 ];
 
-const grid = document.getElementById('grid');
-PROJECTS.forEach(p => {
-  const card = document.createElement('div');
-  card.className = 'card' + (p.kind==='soon' ? ' soon' : '');
-  let badge = '';
-  if (p.kind==='live')   badge = '<span class="badge live">● Live preview</span>';
-  if (p.kind==='github') badge = '<span class="badge gh">View on GitHub ↗</span>';
-  if (p.kind==='soon')   badge = '<span class="badge soon">Coming soon</span>';
-  card.innerHTML =
-    `<div class="accent" style="background:${p.accent}"></div>
-     <h2><span class="emoji">${p.emoji}</span>${p.name}</h2>
-     <p>${p.desc}</p>${badge}`;
-  card.onclick = () => {
-    if (p.kind==='live')   openModal(p);
-    if (p.kind==='github') window.open(p.repo,'_blank','noopener');
-  };
-  grid.appendChild(card);
+const STATUS = {
+  live:{cls:"live", label:"live"},
+  src :{cls:"src",  label:"source"},
+  soon:{cls:"soon", label:"soon"},
+};
+
+const list = document.getElementById('list');
+PROJECTS.forEach((p,i)=>{
+  const s = STATUS[p.status];
+  const isLink = p.status==='live' || p.status==='src';
+  const el = document.createElement(isLink ? 'a' : 'div');
+  el.className = 'row' + (isLink ? '' : ' disabled');
+  if (isLink && p.status==='src'){ el.href = p.repo; el.target='_blank'; el.rel='noopener'; }
+  el.innerHTML = `
+    <span class="idx">${String(i+1).padStart(2,'0')}</span>
+    <div class="main">
+      <span class="name">${p.name}<span class="go">${p.status==='live'?'preview →':'→'}</span></span>
+      <div class="desc">${p.desc}</div>
+    </div>
+    <div class="stack">${p.stack.join('<br>')}</div>
+    <span class="status ${s.cls}"><span class="dot"></span>${s.label}</span>`;
+  if (p.status==='live'){ el.href='#'; el.addEventListener('click',e=>{e.preventDefault();openModal(p);}); }
+  list.appendChild(el);
 });
 
+// masthead + footer stats
+const n = PROJECTS.length, live = PROJECTS.filter(p=>p.status==='live').length;
+document.getElementById('mastMeta').innerHTML = `<b>${n}</b> projects<br><b>${live}</b> live`;
+document.getElementById('footStats').textContent = `${n} projects — ${live} live, ${PROJECTS.filter(p=>p.status==='src').length} source, ${PROJECTS.filter(p=>p.status==='soon').length} in progress`;
+
+// modal
 const overlay = document.getElementById('overlay');
 function openModal(p){
-  document.getElementById('modalTitle').textContent = p.name;
-  document.getElementById('modalFrame').src = p.url;
-  const openA = document.getElementById('modalOpen'); openA.href = p.url;
-  const repoA = document.getElementById('modalRepo');
-  if (p.repo){ repoA.href = p.repo; repoA.style.display=''; } else { repoA.style.display='none'; }
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
+  document.getElementById('mTitle').textContent = p.name;
+  document.getElementById('mUrl').textContent = '— ' + p.url.replace(/^https?:\/\//,'').replace(/\/$/,'');
+  document.getElementById('mFrame').src = p.url;
+  document.getElementById('mOpen').href = p.url;
+  const repo = document.getElementById('mRepo');
+  if (p.repo){ repo.href=p.repo; repo.style.display=''; } else repo.style.display='none';
+  overlay.classList.add('open'); document.body.style.overflow='hidden';
 }
 function closeModal(){
   overlay.classList.remove('open');
-  document.getElementById('modalFrame').src='about:blank';
+  document.getElementById('mFrame').src='about:blank';
   document.body.style.overflow='';
 }
-overlay.addEventListener('click', e => { if(e.target===overlay) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-
-// floating bubbles
-const bubbles = document.getElementById('bubbles');
-for(let i=0;i<14;i++){
-  const b=document.createElement('span');
-  const size=20+Math.floor(Math.random()*90);
-  b.style.width=b.style.height=size+'px';
-  b.style.left=Math.random()*100+'vw';
-  b.style.animationDuration=(14+Math.random()*22)+'s';
-  b.style.animationDelay=(-Math.random()*20)+'s';
-  bubbles.appendChild(b);
-}
+overlay.addEventListener('click',e=>{ if(e.target===overlay) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
 </script>
 </body>
 </html>
