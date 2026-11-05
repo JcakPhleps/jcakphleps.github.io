@@ -1,0 +1,7 @@
+{
+  "version": "1.1",
+  "name": "Quincy",
+  "notes": "Firefox, Display scaling, Software Update (OTA), real Shut Down/Restart, and an Install-to-disk option.",
+  "bundle": "https://jcakphleps.github.io/phelps-linux/gui.tar.gz",
+  "packages": ["firefox"]
+}
