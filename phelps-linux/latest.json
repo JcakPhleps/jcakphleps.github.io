@@ -1,7 +1,7 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "name": "Quincy",
-  "notes": "Firefox, Display scaling, Software Update (OTA), real Shut Down/Restart, and an Install-to-disk option.",
+  "notes": "Resizable windows; fixed setup scrolling so the Continue button is never blocked; long Wi-Fi names no longer break the layout; real Wi-Fi scan shows first (examples only as fallback).",
   "bundle": "https://jcakphleps.github.io/phelps-linux/gui.tar.gz",
   "packages": ["firefox"]
 }
