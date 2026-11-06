@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phelps Linux</title>
+<meta name="description" content="A small, fast Linux you can boot off a USB stick. Based on Alpine. Made by Jack Phelps.">
+<link rel="icon" href="logo.svg">
+<style>
+  :root{
+    --gold:#e3ab06; --gold-d:#b9850a; --ember:#e95420;
+    --ink:#2b2621; --ink-2:#6f675d; --paper:#f5f1ea; --card:#fffdf8; --hair:#e2dccf;
+    --plum-1:#3c2435; --plum-2:#271724;
+    --font:-apple-system,"Segoe UI","Cantarell","Noto Sans",system-ui,sans-serif;
+    --mono:"SF Mono","Ubuntu Mono","DejaVu Sans Mono",Menlo,monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; font-family:var(--font); color:var(--ink); background:var(--paper); line-height:1.6; font-size:17px; }
+  a{ color:var(--gold-d); }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:940px; margin:0 auto; padding:0 22px; }
+
+  /* top bar */
+  .top{ display:flex; align-items:center; gap:11px; padding:18px 22px; max-width:940px; margin:0 auto; }
+  .top img{ width:30px; height:30px; }
+  .top b{ font-size:16px; letter-spacing:.2px; }
+  .top .right{ margin-left:auto; font-size:14px; }
+  .top .right a{ color:#d9cdb8; text-decoration:none; }
+
+  /* hero */
+  .hero{ background:
+      radial-gradient(90% 70% at 85% 0%, rgba(233,84,32,.18), transparent 60%),
+      radial-gradient(80% 70% at 10% 10%, rgba(227,171,6,.16), transparent 55%),
+      linear-gradient(165deg,var(--plum-1),var(--plum-2));
+    color:#f3ece2; padding:14px 0 50px; }
+  .hero h1{ font-size:46px; line-height:1.05; margin:30px 0 10px; font-weight:700; letter-spacing:-.5px; color:#fff; }
+  .hero .lede{ font-size:20px; color:#e7dccb; max-width:620px; margin:0 0 26px; }
+  .hero .lede b{ color:#fff; font-weight:600; }
+  .dl{ display:inline-flex; align-items:center; gap:10px; background:linear-gradient(180deg,#f5c01a,#dca905);
+    color:#3a2600; font-weight:700; font-size:17px; padding:13px 24px; border-radius:9px; text-decoration:none;
+    border:1px solid var(--gold-d); box-shadow:0 10px 24px rgba(0,0,0,.35); }
+  .dl:hover{ background:linear-gradient(180deg,#ffca2b,#e3ab06); }
+  .dl-meta{ color:#c9bca8; font-size:14px; margin-top:12px; }
+  .dl-meta code{ font-family:var(--mono); color:#e7dccb; }
+  .shot{ margin-top:34px; border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 30px 70px rgba(0,0,0,.45); }
+
+  /* sections */
+  section{ padding:46px 0; border-bottom:1px solid var(--hair); }
+  section:last-of-type{ border-bottom:none; }
+  h2{ font-size:26px; margin:0 0 14px; letter-spacing:-.3px; }
+  p{ margin:0 0 14px; } .muted{ color:var(--ink-2); }
+  .lead-in{ max-width:680px; }
+
+  .steps{ counter-reset:s; list-style:none; padding:0; margin:18px 0 0; max-width:720px; }
+  .steps li{ counter-increment:s; position:relative; padding:0 0 20px 50px; }
+  .steps li::before{ content:counter(s); position:absolute; left:0; top:-2px; width:32px; height:32px;
+    background:var(--gold); color:#2a1d00; font-weight:700; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .steps b{ font-weight:600; }
+  code{ font-family:var(--mono); background:#efe8da; padding:2px 6px; border-radius:4px; font-size:.92em; }
+  pre{ font-family:var(--mono); background:var(--plum-2); color:#e7dccb; padding:13px 15px; border-radius:8px; overflow-x:auto; font-size:14px; }
+
+  .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-top:18px; }
+  .card{ background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:16px 18px; }
+  .card h3{ margin:0 0 4px; font-size:16px; } .card p{ margin:0; font-size:15px; color:var(--ink-2); }
+
+  .note{ background:#fff6e6; border:1px solid #efd9a3; border-left:4px solid var(--gold); border-radius:8px; padding:16px 18px; max-width:720px; }
+  .note b{ color:#7a5a10; }
+
+  footer{ background:var(--plum-2); color:#bcae9c; font-size:14px; padding:26px 0 34px; }
+  footer a{ color:#e7dccb; }
+  footer .wrap{ display:flex; flex-wrap:wrap; gap:6px 18px; align-items:center; }
+
+  @media (max-width:560px){ .hero h1{ font-size:34px; } body{ font-size:16px; } }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <img src="logo.svg" alt=""><b>Phelps&nbsp;Linux</b>
+  <span class="right"><a href="https://github.com/JcakPhleps">GitHub</a></span>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>A whole operating system<br>on a USB stick.</h1>
+    <p class="lede">Phelps Linux is a small, quick Linux I've been building. You flash it to a USB stick,
+      plug it into a Mac or PC, and it boots into its own desktop — <b>without touching whatever's already on the computer.</b>
+      If you like it, you can install it for real.</p>
+    <a class="dl" href="https://github.com/JcakPhleps/jcakphleps.github.io/releases/latest/download/phelps-linux.img.gz">
+      ↓ Download Phelps Linux</a>
+    <div class="dl-meta">64-bit (Intel Mac or PC) · about 450&nbsp;MB download · based on <a href="https://alpinelinux.org" style="color:#e7dccb">Alpine Linux</a><br>
+      Current build: <code>2.6 “South Weymouth”</code> — it updates itself to the newest version the first time it goes online.<br>
+      <span style="opacity:.75">SHA-256 (.gz): <code style="font-size:11px">a5ffdaf79be062e80359df6dbbb5e3088c1e15e9c054f7823942e17a32d2b24e</code></span></div>
+    <div class="shot"><img src="desktop.png" alt="The Phelps Linux desktop, showing its apps"></div>
+  </div>
+</header>
+
+<section><div class="wrap lead-in">
+  <h2>What it actually is</h2>
+  <p>It's a real Linux distribution, not a theme or a web page. Under the hood it's
+    <a href="https://alpinelinux.org">Alpine Linux</a> — tiny and fast — and on top of that is a desktop I made:
+    a file manager, a text editor, a terminal that's a <em>real</em> shell, a calculator, notes, a calendar,
+    a clock, paint, an image viewer, a music player, and Firefox and LibreOffice when you want them.</p>
+  <p>It keeps itself up to date over the internet, so once you've got it, you don't re-download anything —
+    it just gets newer on its own.</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Put it on a USB stick</h2>
+  <p class="muted lead-in">You'll need a USB stick (4&nbsp;GB or bigger). This erases the stick, so use an empty one.</p>
+  <ol class="steps">
+    <li><b>Download</b> the file above and unzip it — you'll get <code>phelps-linux.img</code>.</li>
+    <li><b>Flash it to the stick.</b> The easy way is <a href="https://etcher.balena.io">Balena Etcher</a> (free, works on Mac, Windows, Linux): open it, pick the <code>.img</code>, pick your USB stick, hit Flash.</li>
+    <li>If you'd rather use the terminal on a Mac, find the disk with <code>diskutil list</code>, then:
+      <pre>sudo dd if=phelps-linux.img of=/dev/rdiskN bs=4m</pre>
+      (swap <code>N</code> for your USB's number — double-check it, this overwrites the whole disk.)</li>
+  </ol>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Boot it</h2>
+  <ol class="steps">
+    <li>Plug the stick into the computer and restart it.</li>
+    <li><b>On a Mac:</b> hold the <code>Option</code> (⌥) key as it turns on, then pick the <b>EFI Boot</b> drive.<br>
+      <b>On a PC:</b> tap the boot-menu key (usually <code>F12</code>, <code>F10</code>, or <code>Esc</code>) and choose the USB stick.</li>
+    <li>It boots into Phelps Linux. Nothing on the computer's own drive gets changed — pull the stick out and everything's back to normal.</li>
+  </ol>
+</div></section>
+
+<section><div class="wrap">
+  <h2>What you need</h2>
+  <div class="cards">
+    <div class="card"><h3>A 64-bit computer</h3><p>An Intel Mac, or a PC that boots with UEFI. (Apple-Silicon Macs aren't supported.)</p></div>
+    <div class="card"><h3>About 2 GB of RAM</h3><p>It's light. Old laptops are kind of the point.</p></div>
+    <div class="card"><h3>A USB stick</h3><p>4 GB or bigger, and empty — flashing wipes it.</p></div>
+    <div class="card"><h3>A few minutes</h3><p>Download, flash, reboot. That's the whole thing.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Before you try it</h2>
+  <div class="note">
+    <p><b>This is a work in progress.</b> I'm one person and I'm still building it, so things will be rough and some stuff will break. That's expected.</p>
+    <p style="margin-bottom:0">If something goes wrong, or you just have thoughts, tell me — open an issue on
+      <a href="https://github.com/JcakPhleps">GitHub</a>. It genuinely helps.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>Phelps Linux — made by Jack Phelps, in Massachusetts.</span>
+  <span>Built on <a href="https://alpinelinux.org">Alpine Linux</a>.</span>
+  <span><a href="https://github.com/JcakPhleps">GitHub</a></span>
+</div></footer>
+
+</body>
+</html>
