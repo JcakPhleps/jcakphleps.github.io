@@ -1,7 +1,7 @@
 {
-  "version": "2.5",
+  "version": "2.6",
   "name": "Weymouth",
-  "notes": "South Weymouth — design overhaul (Ubuntu × Snow Leopard warmth, off the Mac look); real File Cabinet (open files, New Folder, Rename, Delete, right-click menus); Wi-Fi now auto-reconnects on every boot with DNS; real Resolution settings.",
+  "notes": "Way more apps (Clock, Converter, Paint, Image Viewer, Music); real File Cabinet; left-side dock + warm redesign; windows move/resize fixed (stay on screen); apps install on-demand; real Firefox/LibreOffice icons; LibreOffice full names; Wi-Fi auto-reconnect.",
   "bundle": "https://jcakphleps.github.io/phelps-linux/gui.tar.gz",
   "packages": ["firefox","libreoffice-writer","libreoffice-calc","libreoffice-impress","libreoffice-gtk3","acpid","triggerhappy","wlr-randr","font-noto"]
 }
