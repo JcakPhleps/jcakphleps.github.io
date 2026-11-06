@@ -1,7 +1,7 @@
 {
-  "version": "2.1",
+  "version": "2.5",
   "name": "Weymouth",
-  "notes": "Real resolution settings (Display → Resolution) via wlr-randr — pick your actual screen resolution. Removed UI scaling.",
+  "notes": "South Weymouth — design overhaul (Ubuntu × Snow Leopard warmth, off the Mac look); real File Cabinet (open files, New Folder, Rename, Delete, right-click menus); Wi-Fi now auto-reconnects on every boot with DNS; real Resolution settings.",
   "bundle": "https://jcakphleps.github.io/phelps-linux/gui.tar.gz",
-  "packages": ["firefox","libreoffice-writer","libreoffice-calc","libreoffice-impress","libreoffice-gtk3","acpid","triggerhappy","wlr-randr"]
+  "packages": ["firefox","libreoffice-writer","libreoffice-calc","libreoffice-impress","libreoffice-gtk3","acpid","triggerhappy","wlr-randr","font-noto"]
 }
