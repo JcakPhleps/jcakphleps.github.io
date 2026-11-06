@@ -1,7 +1,7 @@
 {
-  "version": "1.2",
-  "name": "Quincy",
-  "notes": "Resizable windows; fixed setup scrolling so the Continue button is never blocked; long Wi-Fi names no longer break the layout; real Wi-Fi scan shows first (examples only as fallback).",
+  "version": "2.0",
+  "name": "Weymouth",
+  "notes": "Weymouth — Apps menu, Notes/Calculator/Calendar, LibreOffice, resizable windows, right-click menus, UI-scale Apply button, Firefox with Ctrl+Alt+Q exit, laptop lid-close sleep.",
   "bundle": "https://jcakphleps.github.io/phelps-linux/gui.tar.gz",
-  "packages": ["firefox"]
+  "packages": ["firefox","libreoffice-writer","libreoffice-calc","libreoffice-impress","libreoffice-gtk3","acpid","triggerhappy"]
 }
