@@ -1,7 +1,7 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "name": "Weymouth",
-  "notes": "Weymouth — Apps menu, Notes/Calculator/Calendar, LibreOffice, resizable windows, right-click menus, UI-scale Apply button, Firefox with Ctrl+Alt+Q exit, laptop lid-close sleep.",
+  "notes": "Real resolution settings (Display → Resolution) via wlr-randr — pick your actual screen resolution. Removed UI scaling.",
   "bundle": "https://jcakphleps.github.io/phelps-linux/gui.tar.gz",
-  "packages": ["firefox","libreoffice-writer","libreoffice-calc","libreoffice-impress","libreoffice-gtk3","acpid","triggerhappy"]
+  "packages": ["firefox","libreoffice-writer","libreoffice-calc","libreoffice-impress","libreoffice-gtk3","acpid","triggerhappy","wlr-randr"]
 }
